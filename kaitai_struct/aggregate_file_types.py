@@ -11,9 +11,11 @@ for i, s in enumerate(data.sections):
         compression_method = s.body.header.compression_method
         if file_extension not in counts:
             counts[file_extension] = {}
-        counts[file_extension][i] = compression_method
+        if compression_method not in counts[file_extension]:
+            counts[file_extension][compression_method] = 0
+        counts[file_extension][compression_method] += 1
     except AttributeError:
         pass
 for file_extension, count in counts.items():
     for i, value in count.items():
-        print(file_extension.rjust(12), ":", str(i).rjust(8), ":", value)
+        print(file_extension.rjust(12), ":", str(value).rjust(8), ":", i)
