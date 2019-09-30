@@ -9,7 +9,7 @@ for i in $(seq 0 15); do
   cp "$zip_file" "attempt_$i"
   (
     cd "attempt_$i"
-    patch.py "$zip_file" 6 "$i"
+    ./patch.py "$zip_file" 6 "$i"
     binwalk -e "$zip_file"
   )
 done
