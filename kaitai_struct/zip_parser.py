@@ -231,7 +231,7 @@ class Zip(KaitaiStruct):
             self._raw_extra = self._io.read_bytes(self.extra_len)
             io = KaitaiStream(BytesIO(self._raw_extra))
             self.extra = self._root.Extras(io, self, self._root)
-            self.comment = (self._io.read_bytes(self.comment_len)).decode(u"UTF-8")
+            self.comment = (self._io.read_bytes(self.comment_len))
 
         @property
         def local_header(self):
@@ -320,7 +320,7 @@ class Zip(KaitaiStruct):
             self.central_dir_size = self._io.read_u4le()
             self.central_dir_offset = self._io.read_u4le()
             self.comment_len = self._io.read_u2le()
-            self.comment = (self._io.read_bytes(self.comment_len)).decode(u"UTF-8")
+            self.comment = (self._io.read_bytes(self.comment_len))
 
 
 
