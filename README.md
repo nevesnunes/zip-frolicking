@@ -30,4 +30,13 @@ We can catch differences such as the comment bytes:
 
 For comparing multiple files at a time, one can keep track of consistently different fields (e.g. size, global position...) and report files with fields that have an overall lower distinct count (e.g. among 10 files, only 1 had a comment).
 
+```bash
+printf '%s\n' \
+    a.zip \
+    b.zip \
+    c.zip \
+    | xargs -i bash -c './dump_metadata.py "$1" | gron | grep -v "\.\(un\)\?compressed_size"' _ {} \ 
+    | sort | uniq -c | sort -n | vim -c 'set filetype=diff' -
+```
+
 Alternatives: [zipdetails](https://metacpan.org/pod/distribution/IO-Compress/bin/zipdetails), used in the CTF writeup: [UIUCTF 2020 - Zip Heck](https://ptomerty.xyz/writeups/2020-07-19-uiuctf-zip-heck/).
