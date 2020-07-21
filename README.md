@@ -28,7 +28,7 @@ We can catch differences such as the comment bytes:
 +json.sections[2].body.comment["py/b64"] = "bWFkZSBmb3IgdWl1Y3RmIGJ5IGt1aWxpbiA6IF+kE0M=";
 ```
 
-For comparing multiple files at a time, one can keep track of consistently different fields (e.g. size, global position...) and report files with fields that have an overall lower distinct count (e.g. among 10 files, only 1 had a comment).
+For comparing multiple files at a time, one can aggregate their fields. During manual analysis, ignore those that appear in all files (i.e. count = number of files):
 
 ```bash
 printf '%s\n' \
