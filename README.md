@@ -35,7 +35,7 @@ printf '%s\n' \
     a.zip \
     b.zip \
     c.zip \
-    | xargs -i bash -c './dump_metadata.py "$1" | gron | grep -v "\.\(un\)\?compressed_size"' _ {} \ 
+    | xargs -i sh -c './dump_metadata.py "$1" | gron | grep -v "\.\(un\)\?compressed_size"' _ {} \ 
     | sort | uniq -c | sort -n | vim -c 'set filetype=diff' -
 ```
 
